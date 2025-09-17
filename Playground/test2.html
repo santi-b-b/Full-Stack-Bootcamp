@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo 4</title>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr; /* columna 1 más pequeña, columna 2 más grande */
+      gap: 10px;
+    }
+    .caja {
+      background: rgb(225, 190, 243);
+      padding: 20px;
+      height: 100px;
+      text-align: center;
+      border-radius: 10px;
+      align-items: center;
+      align-content: center;
+      
+    }
+    .banner {
+        display: block;
+        background: rgb(0, 82, 114);
+        padding: 10px;
+        height: 100px;
+        text-align: center;
+        border-radius: 10px;
+        align-items: center;
+        align-content: center;
+        margin: 20px;
+    }
+  </style>
+</head>
+<body>
+    <div class="banner">BANNER</div>
+  <div class="grid">
+    <div class="caja">Menú</div>
+    <div class="caja">Contenido principal</div>
+    <div class="caja">Pie de página</div>
+  </div>
+</body>
+</html>

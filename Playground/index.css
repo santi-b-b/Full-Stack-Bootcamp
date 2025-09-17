@@ -1,0 +1,16 @@
+.banner {
+    background-color:red;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.banner h1 {
+    color: bisque;
+    margin: 0;
+    font-size: 2rem;
+}
+.container {
+    color: bisque;
+    padding: 100px 10;
+    text-align: left;
+}
