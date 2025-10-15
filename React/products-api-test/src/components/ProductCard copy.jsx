@@ -5,11 +5,11 @@ const ProductCard = ({ data, onClick }) => {
 
   return (
     <div
-          className="bg-white overflow-hidden flex flex-col cursor-pointer  hover:text-black"
+          className="bg-white shadow-lg overflow-hidden flex flex-col cursor-pointer hover:shadow-xl transition-shadow duration-300"
           onClick={() => onClick(data)}
     >
       <div className=" p-1 mb-4">
-        <div className="bg-gray-100 w-full mb-4 pb-1 hover:bg-gray-200">
+        <div className="bg-gray-100 w-full mb-4 pb-1">
 
           {/* IMAGE */}
           <img
@@ -36,10 +36,10 @@ const ProductCard = ({ data, onClick }) => {
           </p>
         </div>
 
-        {/* DESCRIPTION
+        {/* DESCRIPTION */}
         <p className="text-gray-700 text-justify text-xs line-clamp-3">
           {data.description}
-        </p>  */}
+        </p> 
 
       </div>
     
