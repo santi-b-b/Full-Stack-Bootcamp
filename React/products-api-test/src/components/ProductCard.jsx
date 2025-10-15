@@ -17,13 +17,6 @@ const ProductCard = ({ data, onClick }) => {
             alt={data.imagedescription}
             className="w-full aspect-[9/12] object-contain"
           />
-          {/* BUTTON */}
-          <button
-            onClick={() => addToCart(data)}
-            className="text-gray-500 hover:text-black text-left text-[10px] flex items-center gap-2 justify-end w-full px-2 py-1"
-          >
-            <FaPlus className="w-3 h-3" /> ADD TO THE CART
-          </button>
       </div>
 
         {/* TITLE & PRICE */}
