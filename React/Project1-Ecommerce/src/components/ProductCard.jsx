@@ -1,7 +1,4 @@
-import { FaPlus } from "react-icons/fa";
-import { useCart } from "../hooks/useCart";
 const ProductCard = ({ data, onClick }) => {
-  const { addToCart } = useCart();
 
   return (
     <div

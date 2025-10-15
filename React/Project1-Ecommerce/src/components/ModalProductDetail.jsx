@@ -64,7 +64,7 @@ const ModalProductDetail = ({ product, onClose }) => {
           <div className="flex-1 p-4">
             <div className="flex flex-col justify-between h-full text-[15px] mb-8">
               <p className="uppercase">{product.title}</p>
-              <p className="text-gray-700 mb-2">{product.description}</p>
+              <p className="text-gray-700 text-justify mb-2">{product.description}</p>
               <p> ${product.price.toLocaleString('de-DE')}</p>
             </div>
           </div>
