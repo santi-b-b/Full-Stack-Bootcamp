@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer.jsx";
-import { Outlet } from "react-router-dom"; // 👈 Importa esto
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
@@ -20,3 +20,11 @@ const Layout = () => {
 };
 
 export default Layout;
+
+
+
+
+
+
+
+

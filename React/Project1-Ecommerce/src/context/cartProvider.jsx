@@ -2,9 +2,9 @@ import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
-    // Intentamos leer del localStorage al iniciar
+
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
@@ -13,7 +13,6 @@ export const CartProvider = ({ children }) => {
 
   const [cartItemCount, setCartItemCount] = useState(0);
 
-  // Cada vez que el carrito cambie, lo guardamos
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     setCartItemCount(cart.reduce((total, item) => total + (item.quantity || 0), 0));
@@ -36,15 +35,13 @@ const removeFromCart = (product) => {
   setCart((prev) => {
     const existing = prev.find(item => item.id === product.id);
 
-    // Si no existe, devolvemos el mismo estado
+ 
     if (!existing) return prev;
 
-    // Si solo hay uno, lo eliminamos
     if (existing.quantity === 1) {
       return prev.filter(item => item.id !== product.id);
     }
 
-    // Si hay más de uno, restamos uno
     return prev.map(item =>
       item.id === product.id
         ? { ...item, quantity: item.quantity - 1 }

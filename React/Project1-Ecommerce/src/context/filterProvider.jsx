@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const FilterContext = createContext();
 
-export const FilterProvider = ({ children }) => {
+const FilterProvider = ({ children }) => {
   const [category, setCategory] = useState("All categories");
   const [searchText, setSearchText] = useState("");
   const [categories, setCategories] = useState([]);

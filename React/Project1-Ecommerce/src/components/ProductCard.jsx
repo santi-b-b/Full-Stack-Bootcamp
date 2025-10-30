@@ -26,13 +26,7 @@ const ProductCard = ({ data, onClick }) => {
           </p>
         </div>
 
-        {/* DESCRIPTION
-        <p className="text-gray-700 text-justify text-xs line-clamp-3">
-          {data.description}
-        </p>  */}
-
       </div>
-    
     </div>
   );
 };

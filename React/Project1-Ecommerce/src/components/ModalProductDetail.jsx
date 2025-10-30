@@ -10,8 +10,7 @@ const ModalProductDetail = ({ product, onClose }) => {
       onClose();
     }
   };
-
-  // Busca el producto en el carrito
+  
   const cartItem = cart.find(item => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
