@@ -18,9 +18,7 @@ export default function RootLayout({ children }) {
 
         {/* Contenedor central */}
         <div className="max-w-[600px] flex flex-col min-h-screen bg-white">
-          
-          {/* Header */}
-          <Header></Header>
+                   
 
           {/* Contenido principal */}
           <main className="">
@@ -32,7 +30,7 @@ export default function RootLayout({ children }) {
         {/* Espacio lateral derecho opcional */}
         <div className="hidden md:flex  p-4">
           {/* Aquí puedes poner contenido adicional opcional */}
-          <p>Derecha</p>
+          
         </div>
 
       </body>

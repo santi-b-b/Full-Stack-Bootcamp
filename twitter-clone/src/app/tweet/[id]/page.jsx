@@ -1,4 +1,5 @@
 import TweetCard from "@/components/TweetCard";
+import TweetHeader from "@/components/TweetHeader";
 
 export default async function ProductoPage({ params }) {
 
@@ -12,8 +13,11 @@ export default async function ProductoPage({ params }) {
   console.log(data);
   
   return (
-    <div className=" justify-center items-center flex flex-col w-full">
-      <TweetCard data={data} />
+    <div>
+      <TweetHeader></TweetHeader>
+      <div className=" justify-center items-center flex flex-col w-full">
+        <TweetCard data={data} />
+      </div>
     </div>
   );
 }

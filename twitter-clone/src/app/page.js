@@ -1,5 +1,6 @@
 import NewTweetForm from "@/components/NewTweetForm";
 import TweetGrid from "@/components/TweetGrid";
+import Header from "@/components/Header";
 
 export default async function Home() {
   const url = "https://dummyjson.com/posts";
@@ -14,6 +15,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen font-sans">
+      <Header></Header>
       <NewTweetForm></NewTweetForm>
       <TweetGrid tweets={tweets}/>
     </div>
