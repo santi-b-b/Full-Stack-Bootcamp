@@ -18,7 +18,7 @@ const NewTweetForm = ({}) => {
       />
       <div className="flex flex-1 flex-col gap-3 justify-center items-start">
         <input type="text" placeholder="What's happening?" className="p-2 text-xl focus:outline-none focus:ring-0"/>
-        <button className="flex text-sky-600 font-bold text-sm hover:bg-sky-100 px-4 py-2 rounded-full  gap-2">
+        <button className="flex text-[var(--color-basic)] font-bold text-sm hover:bg-[var(--color-basic-background)] px-4 py-2 rounded-full  gap-2">
           <RiEarthFill className="text-xl" />
           <span>Everyone can reply</span>
         </button>

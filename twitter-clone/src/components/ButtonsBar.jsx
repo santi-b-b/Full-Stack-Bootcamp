@@ -7,16 +7,16 @@ const ButtonBar = ({}) => {
   return (
     <div className="flex flex-1 flex-row">
         <div className="flex w-full justify-start">
-          <RoundButton icon="RiChat1Line" hoverColor={"blue-400"} text={"100"} className="flex-1" />
-          <RoundButton icon="LiaSyncAltSolid" hoverColor={"green-400"} text={"100"} className="flex-1" />
-          <RoundButton icon="RiHeart3Line" hoverColor={"pink-400"} text={"100"} className="flex-1" />
-          <RoundButton icon="IoStatsChartSharp" hoverColor={"blue-400"} text={"100"} className="flex-1" />
+          <RoundButton icon="RiChat1Line" hoverColor={"basic"} text={"100"} className="flex-1 text-gray-500" />
+          <RoundButton icon="LiaSyncAltSolid" hoverColor={"repost"} text={"100"} className="flex-1 text-gray-500" />
+          <RoundButton icon="RiHeart3Line" hoverColor={"like"} text={"100"} className="flex-1 text-gray-500" />
+          <RoundButton icon="IoStatsChartSharp" hoverColor={"basic"} text={"100"} className="flex-1 text-gray-500" />
           
         </div>
 
         <div className="flex flex-row justify-center gap-1">
-            <RoundButton icon="FiBookmark" hoverColor={"blue-400"} />
-            <RoundButton icon="FiShare" hoverColor={"blue-400"} />
+            <RoundButton icon="FiBookmark" hoverColor={"basic"} className="text-gray-500"/>
+            <RoundButton icon="FiShare" hoverColor={"basic"} className="text-gray-500"/>
         </div>
 
 

@@ -6,12 +6,26 @@
   --background: #ffffff;
   --foreground: #171717;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
+  --color-brand-generic: #1A8CD8;
+  --color-basic: #1D9BF0;
+  --color-basic-background: #E1EEF6;
+  --color-like: #F91880;
+  --color-like-background: #F7E0EB;
+  --color-repost: #00BA7C;
+  --color-repost-background: #DEF1EB;
 
-/* Soporte para temas (ejemplo) */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --font-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-size-base: 14px;
+  --line-height-base: 20px;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
 }
 
 /* Modo oscuro */
@@ -38,12 +52,27 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: #1d1d1f;
+  background-color: #fff;
 }
 
 /* Aplicar la fuente también al elemento html */
 html {
   font-family: var(--font-sans);
+}
+
+
+@layer utilities {
+  .text-xs { font-size: var(--text-xs); line-height: 16px; }
+  .text-sm { font-size: var(--text-sm); line-height: 20px; }
+  .text-base { font-size: var(--text-base); line-height: 24px; }
+  .text-lg { font-size: var(--text-lg); line-height: 28px; }
+  .text-xl { font-size: var(--text-xl); line-height: 28px; }
+  .text-2xl { font-size: var(--text-2xl); line-height: 32px; }
 }

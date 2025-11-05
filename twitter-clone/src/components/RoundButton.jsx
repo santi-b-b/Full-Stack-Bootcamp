@@ -31,7 +31,9 @@ const ICONS = {
 
 const RoundButton = ({ icon, text, onClick, hoverColor = "neutral-200", className = "" }) => {
   const hoverClasses = {
-    "cyan-400": "group-hover:text-cyan-400 group-hover:bg-cyan-50",
+    "basic": "group-hover:text-[var(--color-basic)] group-hover:bg-[var(--color-basic-background)]",
+    "like": "group-hover:text-[var(--color-like)] group-hover:bg-[var(--color-like-background)]",
+    "repost": "group-hover:text-[var(--color-repost)] group-hover:bg-[var(--color-repost-background)]",
     "green-400": "group-hover:text-green-600 group-hover:bg-green-100",
     "pink-400": "group-hover:text-pink-600 group-hover:bg-pink-100",
     "blue-400": "group-hover:text-sky-600 group-hover:bg-sky-100",
@@ -44,7 +46,7 @@ const RoundButton = ({ icon, text, onClick, hoverColor = "neutral-200", classNam
   return (
     <button
       onClick={onClick}
-      className={`group flex items-center gap-1 pl-2 text-gray-500 relative transition-colors duration-200 ${hoverClass} ${className}`}
+      className={`group flex items-center gap-1 pl-2 relative transition-colors duration-200 ${hoverClass} ${className}`}
     >
       
       {IconComp && <IconComp className={`w-4.5 h-4.5 z-10 transition-colors duration-200 ${hoverClass.split(" ")[0]}`} />}
