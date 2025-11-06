@@ -1,9 +1,9 @@
-import NewTweetForm from "@/components/NewTweetForm";
-import TweetGrid from "@/components/TweetGrid";
-import Header from "@/components/Header";
+import NewTweetForm from '@/components/NewTweetForm';
+import TweetGrid from '@/components/TweetGrid';
+import Header from '@/components/Header';
 
 export default async function Home() {
-  const url = "https://dummyjson.com/posts";
+  const url = 'https://dummyjson.com/posts';
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -14,13 +14,10 @@ export default async function Home() {
   const tweets = data.posts;
 
   return (
-    <div className="min-h-screen font-sans">
+    <div className="font-sans">
       <Header></Header>
       <NewTweetForm></NewTweetForm>
-      <TweetGrid tweets={tweets}/>
+      <TweetGrid tweets={tweets} />
     </div>
   );
 }
-
-
-

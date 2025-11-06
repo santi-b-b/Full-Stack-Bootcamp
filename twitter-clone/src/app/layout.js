@@ -1,38 +1,30 @@
-import "./globals.css";
-import Header from "@/components/Header";
-import VerticalMenu from "@/components/VerticalMenu";
+import './globals.css';
+import Header from '@/components/Header';
+import VerticalMenu from '@/components/VerticalMenu';
 export const metadata = {
-  title: "Mi App",
-  description: "Layout con contenedor central y espacios laterales",
+  title: 'Mi App',
+  description: 'Layout con contenedor central y espacios laterales',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className="flex min-h-screen bg-gray-100">
-        
+      <body className="flex flex-grow bg-gray-100">
         {/* Espacio lateral izquierdo opcional */}
-        <div className="hidden flex-1 md:flex max-w-[400] p-3 pr-8 justify-end">
+        <div className="sticky top-0 flex max-w-[100] flex-1 items-start justify-end p-3 pr-4 md:flex">
           <VerticalMenu></VerticalMenu>
         </div>
 
         {/* Contenedor central */}
-        <div className="max-w-[600px] flex flex-col min-h-screen bg-white">
-                   
-
+        <div className="flex flex-2">
           {/* Contenido principal */}
-          <main className="">
-            {children}
-          </main>
+          <main className="flex max-w-[600px] flex-col bg-white">{children}</main>
 
+          {/* Espacio lateral derecho opcional */}
+          <div className="hidden w-full flex-1 p-4 md:flex">
+            {/* Aquí puedes poner contenido adicional opcional */}
+          </div>
         </div>
-
-        {/* Espacio lateral derecho opcional */}
-        <div className="hidden md:flex  p-4">
-          {/* Aquí puedes poner contenido adicional opcional */}
-          
-        </div>
-
       </body>
     </html>
   );

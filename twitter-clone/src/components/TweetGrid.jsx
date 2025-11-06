@@ -1,22 +1,20 @@
-import TweetCard from "./TweetCard"
-import Link from "next/link"
+import TweetCard from './TweetCard';
+import Link from 'next/link';
 
-const TweetGrid = ({tweets}) => {
-
-
+const TweetGrid = ({ tweets }) => {
   return (
     <div className="flex justify-center">
-      <ul className="flex flex-col grid-cols-1 md:grid-cols-1 justify-items-center w-full">
-        {tweets.map(tweet => 
-            <li key={tweet.id} >
-              <Link href={`/tweet/${tweet.id}`} className="block w-full hover:bg-gray-100">
-                <TweetCard data={tweet} />
-              </Link>
-            </li> 
-        )}
+      <ul className="flex w-full grid-cols-1 flex-col justify-items-center md:grid-cols-1">
+        {tweets.map((tweet) => (
+          <li key={tweet.id}>
+            <Link href={`/tweet/${tweet.id}`} className="block w-full hover:bg-gray-100">
+              <TweetCard data={tweet} />
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default TweetGrid
+export default TweetGrid;
