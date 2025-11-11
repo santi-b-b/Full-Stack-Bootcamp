@@ -1,9 +1,3 @@
-import { GoHomeFill } from 'react-icons/go';
-import { FiSearch, FiMail } from 'react-icons/fi';
-import { GrNotification } from 'react-icons/gr';
-import { PiPlanetBold } from 'react-icons/pi';
-import { TbDotsCircleHorizontal } from 'react-icons/tb';
-import { IoPersonOutline } from 'react-icons/io5';
 import { RxDotsHorizontal } from 'react-icons/rx';
 import Image from 'next/image';
 import MenuButton from './MenuButton';

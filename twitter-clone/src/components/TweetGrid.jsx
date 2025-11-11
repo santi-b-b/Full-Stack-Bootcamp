@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 const TweetGrid = ({ tweets }) => {
   return (
-    <div className="flex justify-center">
+    <div className="flex w-full justify-center">
       <ul className="flex w-full grid-cols-1 flex-col justify-items-center md:grid-cols-1">
         {tweets.map((tweet) => (
-          <li key={tweet.id}>
-            <Link href={`/tweet/${tweet.id}`} className="block w-full hover:bg-gray-100">
+          <li key={tweet._id}>
+            <Link href={`/tweet/${tweet._id}`} className="block w-full hover:bg-gray-100">
               <TweetCard data={tweet} />
             </Link>
           </li>

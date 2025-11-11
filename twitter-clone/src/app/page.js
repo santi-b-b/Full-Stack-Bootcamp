@@ -1,17 +1,12 @@
 import NewTweetForm from '@/components/NewTweetForm';
 import TweetGrid from '@/components/TweetGrid';
 import Header from '@/components/Header';
+import React from 'react';
 
 export default async function Home() {
-  const url = 'https://dummyjson.com/posts';
-
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Response status: ${response.status}`);
-  }
-
-  const data = await response.json();
-  const tweets = data.posts;
+  const res = await fetch('http://localhost:3000/api/tweets', { cache: 'no-store' });
+  const tweets = res.ok ? await res.json() : [];
+  console.log(tweets);
 
   return (
     <div className="font-sans">

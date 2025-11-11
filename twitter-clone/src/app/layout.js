@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         {/* Contenedor central */}
         <div className="flex flex-2">
           {/* Contenido principal */}
-          <main className="flex max-w-[600px] flex-col bg-white">{children}</main>
+          <main className="flex w-full max-w-[600px] flex-col bg-white">{children}</main>
 
           {/* Espacio lateral derecho opcional */}
           <div className="hidden w-full flex-1 p-4 md:flex">

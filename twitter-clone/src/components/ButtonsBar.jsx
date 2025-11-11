@@ -1,32 +1,36 @@
 'use client';
 
-import Image from 'next/image';
 import RoundButton from './RoundButton';
+import { useState, useEffect } from 'react';
 
 const ButtonBar = ({}) => {
+  const [liked, setLiked] = useState(false);
+
   return (
-    <div className="flex flex-1 flex-row">
+    <div className="z-10 flex flex-1 flex-row">
       <div className="flex w-full justify-start">
         <RoundButton
-          icon="RiChat1Line"
+          icon="chat"
           hoverColor={'basic'}
           text={'100'}
           className="flex-1 text-gray-500"
         />
         <RoundButton
-          icon="LiaSyncAltSolid"
+          icon="repost"
           hoverColor={'repost'}
           text={'100'}
           className="flex-1 text-gray-500"
         />
         <RoundButton
-          icon="RiHeart3Line"
+          icon="like"
           hoverColor={'like'}
+          onClick={() => setLiked((prev) => !prev)} // <- cambio aquí
+          active={liked}
           text={'100'}
           className="flex-1 text-gray-500"
         />
         <RoundButton
-          icon="IoStatsChartSharp"
+          icon="stats"
           hoverColor={'basic'}
           text={'100'}
           className="flex-1 text-gray-500"
@@ -34,8 +38,8 @@ const ButtonBar = ({}) => {
       </div>
 
       <div className="flex flex-row justify-center gap-1">
-        <RoundButton icon="FiBookmark" hoverColor={'basic'} className="text-gray-500" />
-        <RoundButton icon="FiShare" hoverColor={'basic'} className="text-gray-500" />
+        <RoundButton icon="bookmark" hoverColor={'basic'} className="text-gray-500" />
+        <RoundButton icon="share" hoverColor={'basic'} className="text-gray-500" />
       </div>
     </div>
   );

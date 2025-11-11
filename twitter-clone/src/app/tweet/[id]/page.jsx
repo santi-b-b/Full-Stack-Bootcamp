@@ -2,12 +2,8 @@ import TweetCard from '@/components/TweetCard';
 import TweetHeader from '@/components/TweetHeader';
 
 export default async function ProductoPage({ params }) {
-  const response = await fetch(`https://dummyjson.com/posts/${params.id}`);
-  if (!response.ok) {
-    throw new Error(`Response status: ${response.status}`);
-  }
-
-  const data = await response.json();
+  const res = await fetch(`http://localhost:3000/api/tweets/${params.id}`, { cache: 'no-store' });
+  const data = res.ok ? await res.json() : [];
   console.log(data);
 
   return (
