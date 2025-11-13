@@ -28,7 +28,7 @@ const MenuButton = ({ icon, text, link }) => {
     <Link href={link} className="inline-flex">
       <button className="flex items-center gap-3 rounded-full p-3 pr-8 font-sans text-xl hover:bg-neutral-200">
         <div className="w-10">{IconComp && <IconComp className={'text-3xl'} />}</div>
-        {text}
+        <div className="hidden md:inline">{text}</div>
       </button>
     </Link>
   );

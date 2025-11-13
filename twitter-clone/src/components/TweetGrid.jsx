@@ -1,7 +1,10 @@
+'use client';
 import TweetCard from './TweetCard';
 import Link from 'next/link';
+import { useTweets } from '@/contexts/tweetsContext';
 
-const TweetGrid = ({ tweets }) => {
+const TweetGrid = () => {
+  const { tweets } = useTweets();
   return (
     <div className="flex w-full justify-center">
       <ul className="flex w-full grid-cols-1 flex-col justify-items-center md:grid-cols-1">

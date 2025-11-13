@@ -28,24 +28,24 @@ const VerticalMenu = ({}) => {
           height={40}
           className="rounded-full object-contain invert"
         />
-        Premium
+        <div className="hidden md:inline">Premium</div>
       </button>
 
       <MenuButton link={'/'} text={'Profile'} icon={'IoPersonOutline'}></MenuButton>
       <MenuButton link={'/'} text={'More'} icon={'TbDotsCircleHorizontal'}></MenuButton>
 
-      <button className="mt-2 flex w-56 items-center justify-center gap-3 rounded-full bg-black p-3 font-sans text-lg font-bold text-white hover:bg-neutral-800">
-        Post
+      <button className="hidden w-56 items-center justify-center gap-3 rounded-full bg-black p-3 font-sans text-lg font-bold text-white not-first:mt-2 hover:bg-neutral-800 md:inline">
+        <div className="hidden md:inline">Post</div>
       </button>
       <button className="mt-3 flex items-center gap-3 rounded-full p-3 font-sans text-xl hover:bg-neutral-200">
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-800">
           <p className="text-2xl text-white">S</p>
         </div>
         <div className="flex flex-col items-start">
-          <p className="text-sm font-bold">Santiago Benitez B...</p>
-          <p className="text-sm text-neutral-400">@santi_b_b</p>
+          <p className="hidden text-sm font-bold md:inline">Santiago Benitez B...</p>
+          <p className="hidden text-sm text-neutral-400 md:inline">@santi_b_b</p>
         </div>
-        <RxDotsHorizontal></RxDotsHorizontal>
+        <RxDotsHorizontal className="hidden md:inline"></RxDotsHorizontal>
       </button>
     </div>
   );

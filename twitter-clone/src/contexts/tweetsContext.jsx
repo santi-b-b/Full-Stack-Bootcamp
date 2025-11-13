@@ -1,58 +1,30 @@
-import { createContext, useState, useEffect } from 'react';
+'use client';
+import { createContext, useContext, useState, useEffect } from 'react';
 
-export const TweetsContext = createContext();
+const TweetContext = createContext();
 
-const tweetsProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : [];
-  });
+export const TweetProvider = ({ children }) => {
+  const [tweets, setTweets] = useState([]);
 
-  const [cartTotal, setCartTotal] = useState(0);
+  const fetchTweets = async () => {
+    const res = await fetch('/api/tweets');
+    const data = await res.json();
+    setTweets(data);
+  };
 
-  const [cartItemCount, setCartItemCount] = useState(0);
+  const addTweet = (tweet) => {
+    setTweets([tweet, ...tweets]);
+  };
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    setCartItemCount(cart.reduce((total, item) => total + (item.quantity || 0), 0));
-    setCartTotal(cart.reduce((total, item) => total + (item.quantity * item.price || 0), 0));
-  }, [cart]);
-
-  const addToCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-
-      if (!existing) return prev;
-
-      if (existing.quantity === 1) {
-        return prev.filter((item) => item.id !== product.id);
-      }
-
-      return prev.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
-      );
-    });
-  };
-
-  const clearCart = () => setCart([]);
+    fetchTweets();
+  }, []);
 
   return (
-    <TweetsContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, cartTotal, cartItemCount }}
-    >
+    <TweetContext.Provider value={{ tweets, addTweet, fetchTweets }}>
       {children}
-    </TweetsContext.Provider>
+    </TweetContext.Provider>
   );
 };
+
+export const useTweets = () => useContext(TweetContext);

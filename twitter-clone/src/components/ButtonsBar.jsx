@@ -6,6 +6,13 @@ import { useState, useEffect } from 'react';
 const ButtonBar = ({}) => {
   const [liked, setLiked] = useState(false);
 
+  function handleLikeClick(e) {
+    if (e && typeof e.preventDefault === 'function') {
+      e.preventDefault();
+    }
+    setLiked((prev) => !prev);
+  }
+
   return (
     <div className="z-10 flex flex-1 flex-row">
       <div className="flex w-full justify-start">
@@ -24,7 +31,7 @@ const ButtonBar = ({}) => {
         <RoundButton
           icon="like"
           hoverColor={'like'}
-          onClick={() => setLiked((prev) => !prev)} // <- cambio aquí
+          onClick={handleLikeClick}
           active={liked}
           text={'100'}
           className="flex-1 text-gray-500"

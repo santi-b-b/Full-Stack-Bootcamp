@@ -2,14 +2,22 @@ import mongoose from 'mongoose';
 import clientPromise from '../mongodb';
 import { ObjectId } from 'mongodb';
 
-const TweetSchema = new mongoose.Schema(
-  {
-    author: String,
-    text: String,
-    createdAt: { type: Date, default: () => new Date() },
+const TweetSchema = new mongoose.Schema({
+  body: {
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 280,
   },
-  { collection: 'tweets' }
-);
+  author: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 export async function getTweetById(id) {
   try {
