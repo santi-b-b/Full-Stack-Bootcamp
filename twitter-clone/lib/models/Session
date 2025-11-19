@@ -1,0 +1,14 @@
+// lib/sessionModel.js
+import mongoose from 'mongoose';
+
+const SessionSchema = new mongoose.Schema({
+  sessionId: { type: String, required: true, unique: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+  createdAt: { type: Date, default: Date.now },
+  expiresAt: { type: Date, required: true }, // para vencimiento
+  userAgent: { type: String }, // opcional: para debugging / seguridad
+});
+
+SessionSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); // TTL index en Mongo
+
+export default mongoose.models.Session || mongoose.model('Session', SessionSchema);

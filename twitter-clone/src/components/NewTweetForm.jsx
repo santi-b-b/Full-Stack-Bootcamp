@@ -5,10 +5,16 @@ import PostButtonBar from './PostButtonBar';
 import { RiEarthFill } from 'react-icons/ri';
 import { useTweets } from '@/contexts/tweetsContext';
 import TextareaAutosize from 'react-textarea-autosize';
+import { useUser } from '@/contexts/userContext';
 
-const NewTweetForm = ({}) => {
+const NewTweetForm = () => {
+  const { user, authless } = useUser();
+
+  if (authless) return null;
   const { addTweet } = useTweets();
   const [content, setContent] = useState('');
+
+  console.log(user);
 
   const handlePost = async () => {
     if (!content.trim()) return;
@@ -16,7 +22,10 @@ const NewTweetForm = ({}) => {
     const res = await fetch('/api/tweets', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ body: content }),
+      body: JSON.stringify({
+        body: content,
+        author: user.id, // ⬅️ aquí va dentro del body
+      }),
     });
 
     if (res.ok) {
@@ -27,9 +36,12 @@ const NewTweetForm = ({}) => {
   };
   return (
     <div className="relative flex w-full flex-1 items-start justify-start gap-3 border-x border-b border-gray-100 p-4">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-800">
-        <p className="text-2xl text-white">S</p>
-      </div>
+      <img
+        src={user.image}
+        alt="user avatar"
+        onError={(e) => (e.target.src = '/assets/default-avatar.png')}
+        className="h-10 w-10 rounded-full bg-neutral-200 object-cover"
+      />
       <div className="flex flex-1 flex-col items-start justify-center gap-3">
         <TextareaAutosize
           value={content}

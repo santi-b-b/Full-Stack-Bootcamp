@@ -1,18 +1,8 @@
 'use client';
 
 import RoundButton from './RoundButton';
-import { useState, useEffect } from 'react';
 
-const ButtonBar = ({}) => {
-  const [liked, setLiked] = useState(false);
-
-  function handleLikeClick(e) {
-    if (e && typeof e.preventDefault === 'function') {
-      e.preventDefault();
-    }
-    setLiked((prev) => !prev);
-  }
-
+const ButtonBar = ({ likes, liked, handleLikeClick }) => {
   return (
     <div className="z-10 flex flex-1 flex-row">
       <div className="flex w-full justify-start">
@@ -33,7 +23,7 @@ const ButtonBar = ({}) => {
           hoverColor={'like'}
           onClick={handleLikeClick}
           active={liked}
-          text={'100'}
+          text={likes}
           className="flex-1 text-gray-500"
         />
         <RoundButton

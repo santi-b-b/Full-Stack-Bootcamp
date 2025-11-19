@@ -1,0 +1,18 @@
+import * as Popover from '@radix-ui/react-popover';
+
+export default function SidebarMenuPopover() {
+  return (
+    <Popover.Root>
+      <Popover.Trigger>More</Popover.Trigger>
+
+      <Popover.Portal>
+        <Popover.Content side="top" sideOffset={8} className="rounded-xl bg-white p-4 shadow-xl">
+          <p>Add an existing account</p>
+          <p className="mt-2">Log out @santi_b_b</p>
+
+          <Popover.Arrow className="fill-white" />
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  );
+}

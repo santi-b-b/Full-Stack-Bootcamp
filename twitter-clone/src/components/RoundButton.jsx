@@ -59,16 +59,14 @@ const RoundButton = ({ icon, active, text, onClick, hoverColor, className = '' }
         />
       )}
 
-      {text && (
-        <span
-          className={clsx(
-            `z-10 text-xs transition-colors duration-200`,
-            active ? `${hoverClass.text}` : `${hoverClass.hoverText}`
-          )}
-        >
-          {text}
-        </span>
-      )}
+      <span
+        className={clsx(
+          `z-10 text-xs transition-colors duration-200`,
+          active ? `${hoverClass.text}` : `${hoverClass.hoverText}`
+        )}
+      >
+        {text}
+      </span>
       <div
         className={`absolute -left-0.5 flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-200 ${hoverClass.bg}`}
       ></div>

@@ -11,16 +11,22 @@ export async function getTweets() {
     throw err;
   }
 }
-
 export async function addTweet(data) {
-  console.log(data);
   try {
     await connect();
+
+    // Crear tweet usando Mongoose para respetar defaults
     const doc = await Tweet.create(data);
-    console.log(doc);
+
     return doc;
   } catch (err) {
     console.error('addTweet error:', err);
     throw err;
   }
+}
+
+export async function getTweetById(id) {
+  await connect();
+  const user = await Tweet.findById(id);
+  return user;
 }

@@ -5,12 +5,19 @@ const TweetContext = createContext();
 
 export const TweetProvider = ({ children }) => {
   const [tweets, setTweets] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchTweets = async () => {
-    const res = await fetch('/api/tweets');
-    const data = await res.json();
-    setTweets(data);
-  };
+  async function fetchTweets() {
+    try {
+      const res = await fetch('/api/tweets');
+      const data = await res.json();
+      setTweets(data);
+    } catch (err) {
+      console.error('Error al cargar los datos:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const addTweet = (tweet) => {
     setTweets([tweet, ...tweets]);
@@ -21,7 +28,7 @@ export const TweetProvider = ({ children }) => {
   }, []);
 
   return (
-    <TweetContext.Provider value={{ tweets, addTweet, fetchTweets }}>
+    <TweetContext.Provider value={{ tweets, loading, addTweet, fetchTweets }}>
       {children}
     </TweetContext.Provider>
   );
