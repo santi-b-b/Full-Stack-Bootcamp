@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@/contexts/userContext';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const { setAuthless } = useUser();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,6 +24,7 @@ export default function LoginForm() {
 
     if (res.ok) {
       // Login correcto → redirigir al home
+      setAuthless(false);
       router.push('/');
     } else {
       const data = await res.json();
@@ -48,8 +51,8 @@ export default function LoginForm() {
         required
         className="rounded border p-2"
       />
-      <button type="submit" className="rounded bg-blue-500 py-2 text-white">
-        Iniciar sesión
+      <button className="w-48 rounded-full border-1 border-blue-400 bg-[var(--color-basic)] py-2 text-white hover:bg-[var(--color-basic-hover)]">
+        Log in
       </button>
     </form>
   );

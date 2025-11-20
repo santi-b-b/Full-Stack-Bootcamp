@@ -1,5 +1,6 @@
 // src/app/api/auth/logout/route.js
-import { deleteSession } from '@/lib/sessions';
+import { deleteSession } from '@lib/sessions';
+import { parseCookies } from '@lib/auth';
 
 export async function POST(req) {
   const cookieHeader = req.headers.get('cookie') || '';

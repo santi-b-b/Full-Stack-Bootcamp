@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import React from 'react';
 import { TweetProvider } from '@/contexts/tweetsContext';
 import NewTweetForm from '@/components/NewTweetForm';
+import LoginBar from '@/components/LoginBar';
 
 export default async function Home() {
   return (
@@ -12,6 +13,7 @@ export default async function Home() {
         <NewTweetForm />
         <TweetGrid />
       </TweetProvider>
+      <LoginBar></LoginBar>
     </div>
   );
 }

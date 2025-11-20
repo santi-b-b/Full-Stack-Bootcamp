@@ -8,17 +8,20 @@ export const UserProvider = ({ children }) => {
   const [authless, setAuthless] = useState(true);
 
   async function fetchUser() {
+    let data = null;
     try {
       const res = await fetch('/api/auth/me', {
         method: 'GET',
         credentials: 'include',
       });
-      const data = await res.json();
+      data = await res.json();
       setUser(data);
     } catch (err) {
       console.error('Error al cargar el usuario:', err);
     } finally {
-      setAuthless(false);
+      if (!data) {
+        setAuthless(false);
+      }
     }
   }
 
@@ -26,7 +29,11 @@ export const UserProvider = ({ children }) => {
     fetchUser();
   }, []);
 
-  return <UserContext.Provider value={{ user, authless }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser, authless, setAuthless, fetchUser }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export const useUser = () => useContext(UserContext);

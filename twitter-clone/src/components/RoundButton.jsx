@@ -5,14 +5,6 @@ import React from 'react';
 import clsx from 'clsx';
 
 const RoundButton = ({ icon, active, text, onClick, hoverColor, className = '' }) => {
-  function createHoverClass(colorName) {
-    return {
-      text: `text-[var(--color-${colorName})]`,
-      hoverText: `group-hover:text-[var(--color-${colorName})]`,
-      bg: `group-hover:bg-[var(--color-${colorName}-background)]`,
-    };
-  }
-
   // Define the hover classes as string literals so Tailwind's scanner
   // can see them at build time and generate the corresponding CSS.
   const hoverClasses = {
@@ -53,7 +45,7 @@ const RoundButton = ({ icon, active, text, onClick, hoverColor, className = '' }
       {IconComp && (
         <IconComp
           className={clsx(
-            `z-10 h-4.5 w-4.5 transition-colors duration-200`,
+            `z-1 h-4.5 w-4.5 transition-colors duration-200`,
             active ? `${hoverClass.text}` : `${hoverClass.hoverText}`
           )}
         />
@@ -61,7 +53,7 @@ const RoundButton = ({ icon, active, text, onClick, hoverColor, className = '' }
 
       <span
         className={clsx(
-          `z-10 text-xs transition-colors duration-200`,
+          `z-1 text-xs transition-colors duration-200`,
           active ? `${hoverClass.text}` : `${hoverClass.hoverText}`
         )}
       >

@@ -2,6 +2,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import VerticalMenu from '@/components/VerticalMenu';
 import { UserProvider } from '@/contexts/userContext';
+import LoginBar from '@/components/LoginBar';
 
 export const metadata = {
   title: 'Mi App',

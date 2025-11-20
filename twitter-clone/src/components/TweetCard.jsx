@@ -24,7 +24,6 @@ const TweetCard = ({ data }) => {
         const res = await fetch(`/api/users/${data.author}`);
         if (!res.ok) throw new Error('Failed to fetch author');
         const user = await res.json();
-        console.log(user);
         setAuthor(user);
       } catch (err) {
         console.error('Error fetching author:', err);
@@ -46,8 +45,6 @@ const TweetCard = ({ data }) => {
       </div>
     );
   }
-
-  console.log(user);
 
   async function handleLikeClick(e) {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();

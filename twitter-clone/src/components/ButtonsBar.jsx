@@ -4,7 +4,7 @@ import RoundButton from './RoundButton';
 
 const ButtonBar = ({ likes, liked, handleLikeClick }) => {
   return (
-    <div className="z-10 flex flex-1 flex-row">
+    <div className="z-1 flex flex-1 flex-row">
       <div className="flex w-full justify-start">
         <RoundButton
           icon="chat"
