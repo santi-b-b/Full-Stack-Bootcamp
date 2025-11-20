@@ -6,14 +6,15 @@ import ButtonBar from './ButtonsBar';
 import { PiSealCheckFill } from 'react-icons/pi';
 import { formatTimestamp } from '@/utils/formatTimestamp';
 import { useState, useEffect } from 'react';
+import { useUser } from '@/contexts/userContext';
 
 const TweetCard = ({ data }) => {
   const timestamp = data.createdAt ? formatTimestamp(data.createdAt) : '';
 
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(data.likes?.length || 0);
-
   const [author, setAuthor] = useState(null);
+  const { user } = useUser();
 
   useEffect(() => {
     if (!data?.author) return;
@@ -33,6 +34,11 @@ const TweetCard = ({ data }) => {
     fetchAuthor();
   }, [data.author]);
 
+  useEffect(() => {
+    if (!data?.likes || !user?.id) return;
+    setLiked(data.likes.includes(user.id));
+  }, [data.likes, user?.id]);
+
   if (!data || !author) {
     return (
       <div className="flex items-center justify-center py-10">
@@ -41,7 +47,7 @@ const TweetCard = ({ data }) => {
     );
   }
 
-  console.log(data);
+  console.log(user);
 
   async function handleLikeClick(e) {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
@@ -53,7 +59,7 @@ const TweetCard = ({ data }) => {
       await fetch(`/api/tweets/${data._id}/like`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: 'tempUserId' }),
+        body: JSON.stringify({ userId: user.id }),
       });
     } catch (err) {
       console.error('handleLikeClick error:', err);

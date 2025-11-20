@@ -8,11 +8,12 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useUser } from '@/contexts/userContext';
 
 const NewTweetForm = () => {
+  const { addTweet } = useTweets();
+  const [content, setContent] = useState('');
+
   const { user, authless } = useUser();
 
   if (authless) return null;
-  const { addTweet } = useTweets();
-  const [content, setContent] = useState('');
 
   console.log(user);
 
