@@ -1,59 +1,65 @@
 'use client';
-
+import LoginForm from '@/components/LoginForm';
+import RegisterForm from '@/components/Register';
+import { FcGoogle } from 'react-icons/fc';
+import { FaApple } from 'react-icons/fa';
+import { LuCircleOff } from 'react-icons/lu';
+import Modal from './Modal';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useUser } from '@/contexts/userContext';
 
-export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const router = useRouter();
-  const { setAuthless } = useUser();
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setError('');
-
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (res.ok) {
-      // Login correcto → redirigir al home
-      setAuthless(false);
-      router.push('/');
-    } else {
-      const data = await res.json();
-      setError(data.error || 'Error al iniciar sesión');
-    }
-  }
+export default function Login() {
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto flex max-w-sm flex-col gap-4 p-4">
-      {error && <p className="text-red-500">{error}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className="rounded border p-2"
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        className="rounded border p-2"
-      />
-      <button className="w-48 rounded-full border-1 border-blue-400 bg-[var(--color-basic)] py-2 text-white hover:bg-[var(--color-basic-hover)]">
-        Log in
-      </button>
-    </form>
+    <div>
+      <div className="mb-16 flex w-80 flex-col gap-4">
+        <button className="flex h-10 w-full items-center justify-center gap-2 rounded-full border-1 border-neutral-200 py-2 font-bold hover:bg-neutral-200">
+          <FcGoogle className="h-5 w-5" />
+          <p className="font-bold">Registrarse con Google</p>
+        </button>
+        <button className="flex h-10 w-full items-center justify-center gap-2 rounded-full border-1 border-neutral-200 py-2 hover:bg-neutral-200">
+          <FaApple className="h-5 w-5" />
+          <p>Registrarse con Apple</p>
+        </button>
+        <button
+          onClick={() => setRegisterOpen(true)}
+          className="h-10 w-full items-center justify-center rounded-full border-1 bg-black py-2 hover:bg-neutral-800"
+        >
+          <p className="font-bold text-white">Crear cuenta</p>
+        </button>
+        <p className="mb-4 text-xs text-neutral-700">
+          Al registrarte, aceptas los Términos de servicio y la Política de privacidad, incluida la
+          política de Uso de Cookies.
+        </p>
+        <p className="text-lg font-bold">¿Ya tienes una cuenta?</p>
+        <button
+          onClick={() => setLoginOpen(true)}
+          className="flex h-10 w-full items-center justify-center gap-2 rounded-full border-1 border-neutral-200 py-2 font-bold hover:bg-neutral-200"
+        >
+          Iniciar sesión
+        </button>
+        <button className="flex h-10 w-full items-center justify-center gap-2 rounded-full border-1 border-neutral-200 py-2 font-bold hover:bg-neutral-200">
+          <LuCircleOff className="h-5 w-5" />
+          <p>Obten Grok</p>
+        </button>
+        <Modal open={loginOpen} onClose={() => setLoginOpen(false)}>
+          <LoginForm
+            onRegisterClick={() => {
+              setLoginOpen(false);
+              setRegisterOpen(true);
+            }}
+          />
+        </Modal>
+        <Modal open={registerOpen} onClose={() => setRegisterOpen(false)}>
+          <RegisterForm
+            onLogInClick={() => {
+              setLoginOpen(true);
+              setRegisterOpen(false);
+            }}
+          />
+        </Modal>
+      </div>
+    </div>
   );
 }

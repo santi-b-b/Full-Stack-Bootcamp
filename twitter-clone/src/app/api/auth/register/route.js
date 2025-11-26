@@ -13,7 +13,7 @@ export async function POST(req) {
   const exists = await User.findOne({ email });
   if (exists) return new Response(JSON.stringify({ error: 'Email exists' }), { status: 409 });
 
-  const user = new User({ name, email, password });
+  const user = new User({ userName, name, email, password });
   await user.save();
 
   const session = await createSession({

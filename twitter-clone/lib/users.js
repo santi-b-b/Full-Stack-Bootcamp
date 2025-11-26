@@ -27,6 +27,6 @@ import User from './models/User';
 
 export async function getUserById(id) {
   await connect();
-  const user = await User.findById(id).select('name username image');
+  const user = await User.findById(id).select('name userName image');
   return user;
 }

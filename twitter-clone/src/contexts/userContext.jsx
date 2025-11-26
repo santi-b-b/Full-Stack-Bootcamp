@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
     } catch (err) {
       console.error('Error al cargar el usuario:', err);
     } finally {
-      if (!data) {
+      if (data) {
         setAuthless(false);
       }
     }

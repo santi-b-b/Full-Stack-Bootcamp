@@ -2,9 +2,11 @@
 import { RxDotsHorizontal } from 'react-icons/rx';
 import { useUser } from '@/contexts/userContext';
 import * as Popover from '@radix-ui/react-popover';
+import { useRouter } from 'next/navigation';
 
 export default function SidebarMenuPopover({ userName }) {
   const { user, setUser, setAuthless } = useUser();
+  const router = useRouter();
   async function handleLogoutClick() {
     try {
       await fetch(`/api/auth/logout`, {
@@ -16,6 +18,7 @@ export default function SidebarMenuPopover({ userName }) {
     } finally {
       setAuthless(true);
       setUser(null);
+      router.push('/login');
     }
   }
 

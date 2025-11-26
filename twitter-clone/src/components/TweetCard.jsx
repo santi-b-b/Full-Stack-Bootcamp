@@ -54,7 +54,7 @@ const TweetCard = ({ data }) => {
 
     try {
       await fetch(`/api/tweets/${data._id}/like`, {
-        method: 'POST',
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id }),
       });
@@ -75,10 +75,10 @@ const TweetCard = ({ data }) => {
       />
       <div className="flex w-full min-w-0 flex-col gap-4">
         <div className="relative flex flex-row items-center justify-start gap-1">
-          <p className="font-bold">{author.name}</p>
+          <p className="w-auto font-bold whitespace-nowrap">{author.name}</p>
           <PiSealCheckFill className="text-[30px] text-amber-400" />
           <p className="w-full text-neutral-500">
-            @{author.name} · {timestamp}
+            @{author.userName} · {timestamp}
           </p>
           <RoundButton icon="dots" hoverColor={'basic'} className="absolute top-0.5 right-0" />
         </div>
