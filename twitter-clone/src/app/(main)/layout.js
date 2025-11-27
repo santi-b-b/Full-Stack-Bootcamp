@@ -1,7 +1,6 @@
-import Header from '@/components/Header';
 import VerticalMenu from '@/components/VerticalMenu';
-import LoginBar from '@/components/LoginBar';
-import { UserProvider } from '@/contexts/userContext';
+import LoadingScreen from '@/components/LoadingScreen';
+import { TweetProvider } from '@/contexts/tweetsContext';
 
 export const metadata = {
   title: 'X. es lo que esta pasando / X',
@@ -15,21 +14,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Espacio lateral izquierdo opcional */}
-      <div className="sticky top-0 flex max-w-[100] flex-1 items-start justify-end p-3 pr-4 md:flex">
-        <VerticalMenu></VerticalMenu>
-      </div>
-
-      {/* Contenedor central */}
-      <div className="flex flex-2 overflow-auto">
-        {/* Contenido principal */}
-        <main className="flex w-full max-w-[600px] flex-col bg-white">{children}</main>
-
-        {/* Espacio lateral derecho opcional */}
-        <div className="hidden w-full flex-1 p-4 md:flex">
-          {/* Aquí puedes poner contenido adicional opcional */}
+      <TweetProvider>
+        {/* Espacio lateral izquierdo opcional */}
+        <div className="sticky top-0 flex max-w-[100] flex-1 items-start justify-end p-3 pr-4 md:flex">
+          <VerticalMenu></VerticalMenu>
         </div>
-      </div>
+
+        {/* Contenedor central */}
+        <div className="flex flex-2 overflow-auto">
+          {/* Contenido principal */}
+          <main className="flex w-full max-w-[600px] flex-col bg-white">{children}</main>
+
+          {/* Espacio lateral derecho opcional */}
+          <div className="hidden w-full flex-1 p-4 md:flex">
+            {/* Aquí puedes poner contenido adicional opcional */}
+          </div>
+        </div>
+        <LoadingScreen></LoadingScreen>
+      </TweetProvider>
     </div>
   );
 }

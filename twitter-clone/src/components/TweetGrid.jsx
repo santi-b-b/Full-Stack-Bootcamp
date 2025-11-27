@@ -2,9 +2,11 @@
 import TweetCard from './TweetCard';
 import Link from 'next/link';
 import { useTweets } from '@/contexts/tweetsContext';
+import { useRouter } from 'next/navigation';
 
-const TweetGrid = () => {
-  const { tweets, loading } = useTweets();
+const TweetGrid = ({ tweets }) => {
+  const { loading } = useTweets();
+  const router = useRouter();
 
   if (loading) {
     // 🔄 Spinner mientras se carga
@@ -20,9 +22,12 @@ const TweetGrid = () => {
       <ul className="flex w-full grid-cols-1 flex-col justify-items-center md:grid-cols-1">
         {tweets.map((tweet) => (
           <li key={tweet._id}>
-            <Link href={`/tweet/${tweet._id}`} className="block w-full hover:bg-gray-100">
+            <div
+              className="block w-full hover:bg-gray-100"
+              onClick={() => router.push(`/tweet/${tweet._id}`)}
+            >
               <TweetCard data={tweet} />
-            </Link>
+            </div>
           </li>
         ))}
       </ul>

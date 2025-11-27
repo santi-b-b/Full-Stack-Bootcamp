@@ -1,18 +1,15 @@
-import TweetGrid from '@/components/TweetGrid';
-import Header from '@/components/Header';
+import MainHeather from '@/components/MainHeader';
 import React from 'react';
-import { TweetProvider } from '@/contexts/tweetsContext';
 import NewTweetForm from '@/components/NewTweetForm';
 import LoginBar from '@/components/LoginBar';
+import TweetGridMain from '@/components/TweetGridMain';
 
 export default async function Home() {
   return (
     <div className="font-sans">
-      <TweetProvider>
-        <Header></Header>
-        <NewTweetForm />
-        <TweetGrid />
-      </TweetProvider>
+      <MainHeather></MainHeather>
+      <NewTweetForm />
+      <TweetGridMain />
       <LoginBar></LoginBar>
     </div>
   );

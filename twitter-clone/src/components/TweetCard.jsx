@@ -1,20 +1,20 @@
 'use client';
 
-import Image from 'next/image';
 import RoundButton from './RoundButton';
 import ButtonBar from './ButtonsBar';
 import { PiSealCheckFill } from 'react-icons/pi';
 import { formatTimestamp } from '@/utils/formatTimestamp';
 import { useState, useEffect } from 'react';
 import { useUser } from '@/contexts/userContext';
+import { useRouter } from 'next/navigation';
 
 const TweetCard = ({ data }) => {
   const timestamp = data.createdAt ? formatTimestamp(data.createdAt) : '';
-
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(data.likes?.length || 0);
   const [author, setAuthor] = useState(null);
   const { user } = useUser();
+  const router = useRouter();
 
   useEffect(() => {
     if (!data?.author) return;
@@ -54,7 +54,7 @@ const TweetCard = ({ data }) => {
 
     try {
       await fetch(`/api/tweets/${data._id}/like`, {
-        method: 'GET',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id }),
       });
@@ -75,7 +75,15 @@ const TweetCard = ({ data }) => {
       />
       <div className="flex w-full min-w-0 flex-col gap-4">
         <div className="relative flex flex-row items-center justify-start gap-1">
-          <p className="w-auto font-bold whitespace-nowrap">{author.name}</p>
+          <span
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/user/${author._id}`);
+            }}
+            className="cursor-pointer font-bold whitespace-nowrap hover:underline"
+          >
+            {author.name}
+          </span>
           <PiSealCheckFill className="text-[30px] text-amber-400" />
           <p className="w-full text-neutral-500">
             @{author.userName} · {timestamp}

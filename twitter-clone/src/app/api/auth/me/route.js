@@ -13,7 +13,12 @@ export async function GET(req) {
       return NextResponse.json({ error: 'Not logged in' }, { status: 401 });
     }
 
-    const publicUser = { id: user._id, name: user.name, image: user.image };
+    const publicUser = {
+      id: user._id,
+      userName: user.userName,
+      name: user.name,
+      image: user.image,
+    };
     return NextResponse.json(publicUser, { status: 200 });
   } catch (err) {
     console.error('Error in /auth/me:', err);

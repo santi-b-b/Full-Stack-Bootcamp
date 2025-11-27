@@ -63,7 +63,7 @@ const VerticalMenu = ({}) => {
           <div className="hidden md:inline">Post</div>
         </button>
         <div className="bottom relative">
-          <SidebarMenuPopover userName={user.name} />
+          <SidebarMenuPopover />
         </div>
       </div>
     </div>

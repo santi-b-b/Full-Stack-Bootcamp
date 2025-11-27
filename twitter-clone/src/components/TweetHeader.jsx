@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import RoundButton from './RoundButton';
 import { RiArrowLeftLine } from 'react-icons/ri';
+import Header from './Header';
 
-const TweetHeader = () => {
+const TweetHeader = ({ text, children }) => {
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-start gap-2 border-x border-gray-100 bg-white/80 px-1 py-2 backdrop-blur-md">
-      <Link href="/" className="inline-flex">
+    <Header>
+      <Link href="/" className="mr-6 ml-2 inline-flex">
         <RoundButton icon="arrow" hoverColor={'neutral'} />
       </Link>
-      <Link href="/" className="ml-2">
-        <p className="items-start justify-start text-xl font-bold">Post</p>
+      <Link href="/" className="ml-2 flex items-center justify-center gap-2">
+        <p className="items-start justify-start text-xl font-bold">{text}</p>
+        {children}
       </Link>
-    </header>
+    </Header>
   );
 };
 

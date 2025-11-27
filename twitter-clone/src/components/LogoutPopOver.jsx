@@ -4,7 +4,7 @@ import { useUser } from '@/contexts/userContext';
 import * as Popover from '@radix-ui/react-popover';
 import { useRouter } from 'next/navigation';
 
-export default function SidebarMenuPopover({ userName }) {
+export default function SidebarMenuPopover() {
   const { user, setUser, setAuthless } = useUser();
   const router = useRouter();
   async function handleLogoutClick() {
@@ -16,9 +16,9 @@ export default function SidebarMenuPopover({ userName }) {
     } catch (err) {
       console.error('handleLikeClick error:', err);
     } finally {
+      router.push('/login');
       setAuthless(true);
       setUser(null);
-      router.push('/login');
     }
   }
 
@@ -34,7 +34,7 @@ export default function SidebarMenuPopover({ userName }) {
         />
         <div className="flex flex-col items-start">
           <p className="hidden text-sm font-bold md:inline">{user.name}</p>
-          <p className="hidden text-sm text-neutral-400 md:inline">@{user.name}</p>
+          <p className="hidden text-sm text-neutral-400 md:inline">@{user.userName}</p>
         </div>
         <RxDotsHorizontal className="absolute right-4 hidden md:inline"></RxDotsHorizontal>
       </Popover.Trigger>
@@ -49,7 +49,7 @@ export default function SidebarMenuPopover({ userName }) {
             <p className="h-full">Add an existing account</p>
           </div>
           <div onClick={handleLogoutClick} className="p-3 hover:bg-neutral-100">
-            <p className="h-full hover:bg-neutral-100">Log out @{userName}</p>
+            <p className="h-full hover:bg-neutral-100">Log out @{user.userName}</p>
           </div>
 
           <Popover.Arrow className="fill-white" />

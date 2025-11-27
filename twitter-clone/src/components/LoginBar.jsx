@@ -8,7 +8,7 @@ const LoginBar = ({}) => {
   if (!authless) return null;
 
   return (
-    <div className="absolute bottom-0 left-0 z-50 flex h-18 w-full items-center justify-between bg-[var(--color-basic)] px-4 pr-30 pl-80 text-white shadow-[0_1px_20px_rgba(0,0,0,0.25)]">
+    <div className="absolute bottom-0 left-0 z-40 flex h-18 w-full items-center justify-between bg-[var(--color-basic)] px-4 pr-30 pl-80 text-white shadow-[0_1px_20px_rgba(0,0,0,0.25)]">
       <div>
         <p className="text-xl font-bold">No te pierdas lo que esta pasando</p>
         <p>Las personas en X son las primeras en enterarse.</p>

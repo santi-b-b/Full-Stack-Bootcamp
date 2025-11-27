@@ -8,7 +8,7 @@ export default async function ProductoPage({ params }) {
 
   return (
     <div>
-      <TweetHeader></TweetHeader>
+      <TweetHeader text="Post"></TweetHeader>
       <div className="flex w-full flex-col items-center justify-center">
         <TweetCard data={data} />
       </div>
