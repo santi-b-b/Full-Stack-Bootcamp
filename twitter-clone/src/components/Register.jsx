@@ -29,7 +29,15 @@ export default function RegisterForm({ onLogInClick }) {
       setAuthless(false); // ya no es usuario "authless"
       router.push('/'); // redirigir al home
     } else {
-      const error = await res.json();
+      let error;
+      try {
+        error = await res.json();
+      } catch {
+        error = { message: 'Respuesta vacía o no es JSON' };
+      }
+      if (!error.message) {
+        error.message = 'Error desconocido o respuesta vacía del servidor';
+      }
       console.error(error);
     }
   };

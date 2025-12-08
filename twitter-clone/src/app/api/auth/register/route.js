@@ -4,8 +4,8 @@ import { buildSessionCookie } from '@lib/auth';
 import connect from '@lib/mongoose';
 
 export async function POST(req) {
-  const { name, email, password } = await req.json();
-  if (!name || !email || !password) {
+  const { userName, name, email, password } = await req.json();
+  if (!userName || !name || !email || !password) {
     return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400 });
   }
 
