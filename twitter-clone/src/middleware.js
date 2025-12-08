@@ -16,10 +16,10 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // Verificar token
-  const token = req.cookies.get('session')?.value;
+  // Verificar token (Edge Runtime compatible)
+  const session = req.cookies.get('session');
 
-  if (!token) {
+  if (!session) {
     return NextResponse.redirect(new URL('/login', req.url));
   }
 
