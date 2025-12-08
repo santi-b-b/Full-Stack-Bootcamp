@@ -1,0 +1,100 @@
+/* globals.css */
+
+/* Tailwind JIT y base */
+@import 'tailwindcss';
+@import '@fontsource/inter';
+
+/* Variables globales */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --font-sans: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --color-brand-generic: #1a8cd8;
+  --color-basic: #1d9bf0;
+  --color-basic-hover: #48aef2;
+  --color-basic-background: #e1eef6;
+  --color-like: #f91880;
+  --color-like-background: #f7e0eb;
+  --color-repost: #00ba7c;
+  --color-repost-background: #def1eb;
+
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-size-base: 14px;
+  --line-height-base: 20px;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Reset / base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+/* Aplicar la fuente también al html */
+html {
+  font-family: var(--font-sans);
+}
+
+/* Utilidades de tamaño de texto personalizadas */
+@layer utilities {
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: 16px;
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: 20px;
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: 24px;
+  }
+  .text-lg {
+    font-size: var(--text-lg);
+    line-height: 28px;
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: 28px;
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: 32px;
+  }
+}
