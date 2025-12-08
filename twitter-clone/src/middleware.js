@@ -3,15 +3,14 @@ import { NextResponse } from 'next/server';
 export function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  // Rutas públicas (solo login en tu caso)
-  const publicRoutes = ['/login'];
+  // Rutas públicas (login y favicons)
+  const publicRoutes = ['/login', '/favicon.ico', '/favicon.png'];
 
   // Permitir rutas públicas o archivos estáticos
   if (
     publicRoutes.includes(pathname) ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/assets') ||
-    pathname === '/favicon.ico'
+    pathname.startsWith('/assets')
   ) {
     return NextResponse.next();
   }
@@ -27,5 +26,5 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|static|assets|favicon.ico).*)'],
+  matcher: ['/((?!api|_next|static|assets|favicon.ico|favicon.png).*)'],
 };
