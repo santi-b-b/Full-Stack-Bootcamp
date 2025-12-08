@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <div className="flex h-screen overflow-hidden">
       <TweetProvider>
         {/* Espacio lateral izquierdo opcional */}
-        <div className="sticky top-0 flex max-w-md flex-1 items-start justify-end p-3 pr-4 md:flex">
+        <div className="sticky top-0 flex max-w-[100] flex-1 items-start justify-end p-3 pr-4 md:flex">
           <VerticalMenu></VerticalMenu>
         </div>
 
