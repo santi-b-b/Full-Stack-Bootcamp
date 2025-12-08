@@ -1,10 +1,7 @@
 import mongoose from 'mongoose';
-import clientPromise from '../mongodb';
-import { ObjectId } from 'mongodb';
 
 const TweetSchema = new mongoose.Schema({
   body: {
-    //call it message
     type: String,
     required: true,
     trim: true,
@@ -28,5 +25,4 @@ const TweetSchema = new mongoose.Schema({
   },
 });
 
-// Evitar recompilar el modelo en hot-reload
 export default mongoose.models.Tweet || mongoose.model('Tweet', TweetSchema);

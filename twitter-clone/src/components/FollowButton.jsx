@@ -19,7 +19,6 @@ export default function FollowButton({ targetUserId, initialIsFollowing }) {
       method: 'POST',
     });
 
-    const data = await res.json();
     if (res.status === 200) {
       setIsFollowing((prev) => !prev);
       fetchUser();

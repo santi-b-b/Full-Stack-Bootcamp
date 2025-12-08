@@ -52,13 +52,10 @@ const TweetCard = ({ data }) => {
     const newLiked = !liked;
     setLiked(newLiked);
 
-    // 🔥 Actualizamos la lista local de likes
     setLikes((prevLikes) => {
       if (newLiked) {
-        // Agregar el like
         return [...prevLikes, user.id];
       } else {
-        // Quitar el like
         return prevLikes.filter((id) => id !== user.id);
       }
     });
@@ -72,14 +69,11 @@ const TweetCard = ({ data }) => {
     } catch (err) {
       console.error(err);
 
-      // ⛑ REVERTIR los cambios si falla el fetch
       setLiked(!newLiked);
       setLikes((prevLikes) => {
         if (!newLiked) {
-          // si intentábamos hacer unlike → devolverlo
           return [...prevLikes, user.id];
         } else {
-          // si intentábamos hacer like → quitarlo
           return prevLikes.filter((id) => id !== user.id);
         }
       });

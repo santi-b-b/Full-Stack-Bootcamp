@@ -1,6 +1,5 @@
 'use client';
 import TweetCard from './TweetCard';
-import Link from 'next/link';
 import { useTweets } from '@/contexts/tweetsContext';
 import { useRouter } from 'next/navigation';
 
@@ -9,7 +8,6 @@ const TweetGrid = ({ tweets }) => {
   const router = useRouter();
 
   if (loading) {
-    // 🔄 Spinner mientras se carga
     return (
       <div className="flex items-center justify-center py-20">
         <div className="h-6 w-6 animate-spin rounded-full border-[3.5px] border-[var(--color-basic-background)] border-t-[var(--color-brand-generic)]"></div>

@@ -9,8 +9,6 @@ const VerticalMenu = ({}) => {
   const { user, authless } = useUser();
   const [logout, SetLogout] = useState(true);
 
-  //XX Arreglar, no puede depender del authless
-
   if (authless) {
     return (
       <div className="sticky w-60 items-start">

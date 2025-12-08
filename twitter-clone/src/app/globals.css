@@ -1,3 +1,6 @@
+/* globals.css */
+
+/* Tailwind JIT y base */
 @import 'tailwindcss';
 @import '@fontsource/inter';
 
@@ -5,9 +8,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-sans:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
+
+  --font-sans: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
   --color-brand-generic: #1a8cd8;
   --color-basic: #1d9bf0;
   --color-basic-hover: #48aef2;
@@ -17,7 +20,6 @@
   --color-repost: #00ba7c;
   --color-repost-background: #def1eb;
 
-  --font-sans: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
   --font-size-base: 14px;
@@ -46,7 +48,6 @@
   box-sizing: border-box;
 }
 
-/* Estilos globales */
 html,
 body,
 #__next {
@@ -63,15 +64,14 @@ body {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-  color: #1d1d1f;
-  background-color: #fff;
 }
 
-/* Aplicar la fuente también al elemento html */
+/* Aplicar la fuente también al html */
 html {
   font-family: var(--font-sans);
 }
 
+/* Utilidades de tamaño de texto personalizadas */
 @layer utilities {
   .text-xs {
     font-size: var(--text-xs);

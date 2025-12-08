@@ -9,7 +9,7 @@ export async function getUserById(id) {
 
 export async function updateUser(id, data) {
   const user = await User.findByIdAndUpdate(id, data, {
-    new: true, // devuelve el usuario actualizado
+    new: true,
   });
 
   return user;

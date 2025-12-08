@@ -15,7 +15,6 @@ export async function addTweet(data) {
   try {
     await connect();
 
-    // Crear tweet usando Mongoose para respetar defaults
     const doc = await Tweet.create(data);
 
     return doc;
@@ -35,11 +34,10 @@ export async function updateImages({ tweetId, newImages }) {
   try {
     await connect();
 
-    // Actualiza el tweet agregando nuevas imágenes (concat)
     const tweet = await Tweet.findByIdAndUpdate(
       tweetId,
-      { $push: { images: { $each: newImages } } }, // agrega las imágenes al array
-      { new: true } // devuelve el documento actualizado
+      { $push: { images: { $each: newImages } } },
+      { new: true }
     ).lean();
 
     return tweet;
