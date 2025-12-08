@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { useUser } from '@/contexts/userContext';
 
 const LoadingScreen = ({}) => {

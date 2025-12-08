@@ -1,12 +1,37 @@
 'use client';
 
-import Image from 'next/image';
+import { useRef } from 'react';
 import RoundButton from './RoundButton';
 
-const PostButtonBar = ({}) => {
+const PostButtonBar = ({ onSelectImage }) => {
+  const fileInputRef = useRef();
+
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    onSelectImage(file); // se lo pasas al padre
+    e.target.value = '';
+  };
+
   return (
     <div className="flex w-full flex-1 flex-row justify-start gap-3">
-      <RoundButton icon="image" hoverColor={'basic'} className="text-[var(--color-basic)]" />
+      {/* Botón Imagen */}
+      <RoundButton
+        icon="image"
+        hoverColor={'basic'}
+        className="text-[var(--color-basic)]"
+        onClick={handleClick}
+      />
+
+      {/* Input Oculto */}
+      <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={handleFileChange} />
+
+      {/* Otros botones */}
       <RoundButton icon="gif" hoverColor={'basic'} className="text-[var(--color-basic)]" />
       <RoundButton icon="planet" hoverColor={'basic'} className="text-[var(--color-basic)]" />
       <RoundButton

@@ -18,6 +18,7 @@ export async function GET(req) {
       userName: user.userName,
       name: user.name,
       image: user.image,
+      following: user.following,
     };
     return NextResponse.json(publicUser, { status: 200 });
   } catch (err) {

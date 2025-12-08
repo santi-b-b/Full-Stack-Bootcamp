@@ -16,8 +16,7 @@ const UserSchema = new mongoose.Schema({
   image: { type: String, default: '/assets/default-avatar.png' },
   bio: { type: String, maxlength: 160 },
   location: { type: String },
-  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  following: { type: [String], default: [] },
   createdAt: { type: Date, default: Date.now },
 });
 

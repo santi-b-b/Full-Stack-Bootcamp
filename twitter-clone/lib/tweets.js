@@ -30,3 +30,21 @@ export async function getTweetById(id) {
   const user = await Tweet.findById(id);
   return user;
 }
+
+export async function updateImages({ tweetId, newImages }) {
+  try {
+    await connect();
+
+    // Actualiza el tweet agregando nuevas imágenes (concat)
+    const tweet = await Tweet.findByIdAndUpdate(
+      tweetId,
+      { $push: { images: { $each: newImages } } }, // agrega las imágenes al array
+      { new: true } // devuelve el documento actualizado
+    ).lean();
+
+    return tweet;
+  } catch (err) {
+    console.error('updateImages error:', err);
+    throw err;
+  }
+}

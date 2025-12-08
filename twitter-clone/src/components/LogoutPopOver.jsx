@@ -22,7 +22,6 @@ export default function SidebarMenuPopover() {
     }
   }
 
-  console.log();
   return (
     <Popover.Root>
       <Popover.Trigger className="mt-3 flex items-center gap-3 rounded-full p-3 font-sans text-xl hover:bg-neutral-200 md:w-56">

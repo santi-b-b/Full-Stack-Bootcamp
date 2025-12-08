@@ -1,6 +1,7 @@
 import VerticalMenu from '@/components/VerticalMenu';
 import LoadingScreen from '@/components/LoadingScreen';
 import { TweetProvider } from '@/contexts/tweetsContext';
+import RightBar from '@/components/RightBar';
 
 export const metadata = {
   title: 'X. es lo que esta pasando / X',
@@ -26,8 +27,8 @@ export default function RootLayout({ children }) {
           <main className="flex w-full max-w-[600px] flex-col bg-white">{children}</main>
 
           {/* Espacio lateral derecho opcional */}
-          <div className="hidden w-full flex-1 p-4 md:flex">
-            {/* Aquí puedes poner contenido adicional opcional */}
+          <div className="hidden w-full flex-1 md:flex">
+            <RightBar></RightBar>
           </div>
         </div>
         <LoadingScreen></LoadingScreen>

@@ -22,6 +22,10 @@ const TweetSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  images: {
+    type: [String],
+    default: [],
+  },
 });
 
 // Evitar recompilar el modelo en hot-reload

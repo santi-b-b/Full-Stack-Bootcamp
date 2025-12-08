@@ -3,13 +3,14 @@ import React from 'react';
 import NewTweetForm from '@/components/NewTweetForm';
 import LoginBar from '@/components/LoginBar';
 import TweetGridMain from '@/components/TweetGridMain';
+import TweetGridFollowing from '@/components/TweetGridFollowing';
 
 export default async function Home() {
   return (
     <div className="font-sans">
-      <MainHeather tab="main"></MainHeather>
+      <MainHeather tab="following"></MainHeather>
       <NewTweetForm />
-      <TweetGridMain />
+      <TweetGridFollowing />
       <LoginBar></LoginBar>
     </div>
   );

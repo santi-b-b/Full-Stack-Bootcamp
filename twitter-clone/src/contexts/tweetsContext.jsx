@@ -19,6 +19,21 @@ export const TweetProvider = ({ children }) => {
     }
   }
 
+  const updateTweetLikes = (tweetId, userId, isLiking) => {
+    setTweets((prev) =>
+      prev.map((tweet) =>
+        tweet._id === tweetId
+          ? {
+              ...tweet,
+              likes: isLiking
+                ? [...tweet.likes, userId]
+                : tweet.likes.filter((id) => id !== userId),
+            }
+          : tweet
+      )
+    );
+  };
+
   const addTweet = (tweet) => {
     setTweets([tweet, ...tweets]);
   };
@@ -28,7 +43,7 @@ export const TweetProvider = ({ children }) => {
   }, []);
 
   return (
-    <TweetContext.Provider value={{ tweets, loading, addTweet, fetchTweets }}>
+    <TweetContext.Provider value={{ tweets, loading, addTweet, fetchTweets, updateTweetLikes }}>
       {children}
     </TweetContext.Provider>
   );

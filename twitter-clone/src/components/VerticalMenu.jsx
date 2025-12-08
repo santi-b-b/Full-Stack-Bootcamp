@@ -56,7 +56,11 @@ const VerticalMenu = ({}) => {
           <div className="hidden md:inline">Premium</div>
         </button>
 
-        <MenuButton link={'/'} text={'Profile'} icon={'IoPersonOutline'}></MenuButton>
+        <MenuButton
+          link={`/user/${user.id}`}
+          text={'Profile'}
+          icon={'IoPersonOutline'}
+        ></MenuButton>
         <MenuButton link={'/'} text={'More'} icon={'TbDotsCircleHorizontal'}></MenuButton>
 
         <button className="hidden items-center justify-center gap-3 rounded-full bg-black p-2 font-sans text-lg font-bold text-white not-first:mt-2 hover:bg-neutral-800 md:inline md:w-56">

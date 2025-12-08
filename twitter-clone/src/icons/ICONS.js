@@ -33,6 +33,8 @@ import { LuImage } from 'react-icons/lu';
 import { MdOutlineGifBox } from 'react-icons/md';
 import { PiPlanetBold } from 'react-icons/pi';
 import { GrLocation } from 'react-icons/gr';
+import { LuBellPlus } from 'react-icons/lu';
+import { IoMdClose } from 'react-icons/io';
 
 const ICONS = {
   dots: { default: RxDotsHorizontal, active: RxDotsHorizontal },
@@ -50,6 +52,8 @@ const ICONS = {
   smile: { default: FiSmile, active: FiSmile },
   calendar: { default: RiCalendarScheduleLine, active: RiCalendarScheduleLine },
   location: { default: GrLocation, active: GrLocation },
+  bell: { default: LuBellPlus, active: LuBellPlus },
+  close: { default: IoMdClose, active: IoMdClose },
 };
 
 export default ICONS;

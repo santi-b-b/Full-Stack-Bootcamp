@@ -1,13 +1,39 @@
+'use client';
 import Header from './Header';
+import { useRouter } from 'next/navigation';
 
-const MainHeather = () => {
+const MainHeather = ({ tab }) => {
+  const router = useRouter();
+  function handleMainClik() {
+    router.push(`/`);
+  }
+
+  function handleFollowingClik() {
+    router.push(`/following`);
+  }
   return (
     <Header>
-      <div className="flex flex-1 items-center justify-center hover:bg-neutral-200">
-        <p className="border-b-4 border-b-sky-600 p-3">For you</p>
+      <div
+        onClick={handleMainClik}
+        className="relative flex flex-1 items-center justify-center hover:bg-neutral-200"
+      >
+        <p className={tab === 'main' ? 'p-3 text-black' : 'p-3 text-neutral-400'}>For you</p>
+        {tab === 'main' ? (
+          <div className="absolute bottom-0.5 w-14 rounded-full border-[3px] border-[var(--color-brand-generic)]"></div>
+        ) : (
+          <></>
+        )}
       </div>
-      <div className="flex h-full flex-1 items-center justify-center text-neutral-500 hover:border-neutral-200 hover:bg-neutral-200">
-        <p className="p-3">Following</p>
+      <div
+        onClick={handleFollowingClik}
+        className="relative flex h-full flex-1 items-center justify-center hover:border-neutral-200 hover:bg-neutral-200"
+      >
+        <p className={tab === 'following' ? 'p-3 text-black' : 'p-3 text-neutral-400'}>Following</p>
+        {tab === 'following' ? (
+          <div className="absolute bottom-0.5 w-14 rounded-full border-[3px] border-[var(--color-brand-generic)]"></div>
+        ) : (
+          <></>
+        )}
       </div>
     </Header>
   );

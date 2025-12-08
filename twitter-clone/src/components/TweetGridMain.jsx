@@ -4,7 +4,6 @@ import TweetGrid from './TweetGrid';
 
 const TweetGridMain = () => {
   const { tweets } = useTweets();
-
   return <TweetGrid tweets={tweets}></TweetGrid>;
 };
 

@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 const TweetCard = ({ data }) => {
   const timestamp = data.createdAt ? formatTimestamp(data.createdAt) : '';
   const [liked, setLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(data.likes?.length || 0);
+  const [likes, setLikes] = useState(data?.likes || []);
   const [author, setAuthor] = useState(null);
   const { user } = useUser();
   const router = useRouter();
@@ -23,20 +23,20 @@ const TweetCard = ({ data }) => {
       try {
         const res = await fetch(`/api/users/${data.author}`);
         if (!res.ok) throw new Error('Failed to fetch author');
-        const user = await res.json();
-        setAuthor(user);
+        const authorRes = await res.json();
+        setAuthor(authorRes);
       } catch (err) {
         console.error('Error fetching author:', err);
       }
     }
 
     fetchAuthor();
-  }, [data.author]);
+  }, []);
 
   useEffect(() => {
-    if (!data?.likes || !user?.id) return;
-    setLiked(data.likes.includes(user.id));
-  }, [data.likes, user?.id]);
+    if (!user?.id) return;
+    setLiked(likes.includes(user.id));
+  }, [likes]);
 
   if (!data || !author) {
     return (
@@ -47,10 +47,21 @@ const TweetCard = ({ data }) => {
   }
 
   async function handleLikeClick(e) {
-    if (e && typeof e.preventDefault === 'function') e.preventDefault();
+    e.stopPropagation();
+
     const newLiked = !liked;
     setLiked(newLiked);
-    setLikesCount((prev) => (newLiked ? prev + 1 : prev - 1));
+
+    // 🔥 Actualizamos la lista local de likes
+    setLikes((prevLikes) => {
+      if (newLiked) {
+        // Agregar el like
+        return [...prevLikes, user.id];
+      } else {
+        // Quitar el like
+        return prevLikes.filter((id) => id !== user.id);
+      }
+    });
 
     try {
       await fetch(`/api/tweets/${data._id}/like`, {
@@ -59,9 +70,19 @@ const TweetCard = ({ data }) => {
         body: JSON.stringify({ userId: user.id }),
       });
     } catch (err) {
-      console.error('handleLikeClick error:', err);
+      console.error(err);
+
+      // ⛑ REVERTIR los cambios si falla el fetch
       setLiked(!newLiked);
-      setLikesCount((prev) => (newLiked ? prev - 1 : prev + 1));
+      setLikes((prevLikes) => {
+        if (!newLiked) {
+          // si intentábamos hacer unlike → devolverlo
+          return [...prevLikes, user.id];
+        } else {
+          // si intentábamos hacer like → quitarlo
+          return prevLikes.filter((id) => id !== user.id);
+        }
+      });
     }
   }
 
@@ -93,7 +114,15 @@ const TweetCard = ({ data }) => {
 
         <p className="min-w-0 font-sans text-[16px] break-words">{data.body}</p>
 
-        <ButtonBar likes={likesCount} liked={liked} handleLikeClick={handleLikeClick}></ButtonBar>
+        {data?.images.length > 0 && (
+          <img
+            src={data.images[0]}
+            alt="Preview"
+            className="mr-6 mb-2 rounded-xl border border-neutral-200 object-cover"
+          />
+        )}
+
+        <ButtonBar likes={likes.length} liked={liked} handleLikeClick={handleLikeClick}></ButtonBar>
       </div>
     </div>
   );

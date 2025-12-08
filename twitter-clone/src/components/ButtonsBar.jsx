@@ -6,16 +6,11 @@ const ButtonBar = ({ likes, liked, handleLikeClick }) => {
   return (
     <div className="z-1 flex flex-1 flex-row">
       <div className="flex w-full justify-start">
-        <RoundButton
-          icon="chat"
-          hoverColor={'basic'}
-          text={'100'}
-          className="flex-1 text-gray-500"
-        />
+        <RoundButton icon="chat" hoverColor={'basic'} text={'2'} className="flex-1 text-gray-500" />
         <RoundButton
           icon="repost"
           hoverColor={'repost'}
-          text={'100'}
+          text={'1'}
           className="flex-1 text-gray-500"
         />
         <RoundButton
@@ -29,7 +24,7 @@ const ButtonBar = ({ likes, liked, handleLikeClick }) => {
         <RoundButton
           icon="stats"
           hoverColor={'basic'}
-          text={'100'}
+          text={'1'}
           className="flex-1 text-gray-500"
         />
       </div>
