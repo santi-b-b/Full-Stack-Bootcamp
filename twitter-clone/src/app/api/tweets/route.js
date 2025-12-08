@@ -1,4 +1,4 @@
-import { getTweets, addTweet } from '../../../lib/tweets';
+import { getTweets, addTweet } from '../../../../lib/tweets';
 
 export async function GET() {
   try {
@@ -14,8 +14,16 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const { body, author } = await req.json(); // ⬅️ desestructuramos author también
-    console.log(body, author);
+    const formData = await req.formData();
+    const body = formData.get('body');
+    const author = formData.get('author');
+    const image = formData.get('image'); // esto es un File si se subió
+    const imagedata = new FormData();
+    imagedata.append('file', image);
+    imagedata.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET);
+
+    console.log({ body, author, image });
+    let images = [];
 
     if (!body || !body.trim()) {
       console.log('tweet vacio');
@@ -26,9 +34,25 @@ export async function POST(req) {
       return new Response(JSON.stringify({ error: 'Author requerido' }), { status: 400 });
     }
 
+    if (image) {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+
+        {
+          method: 'POST',
+          body: imagedata,
+        }
+      );
+
+      const data = await res.json();
+      console.log(data);
+      images.push(data.secure_url); // guardas el link final
+    }
+
     const newTweet = await addTweet({
       body,
       author, // ⬅️ ahora sí se envía
+      images,
     });
     console.log(newTweet);
 
