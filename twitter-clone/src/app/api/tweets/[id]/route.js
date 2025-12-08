@@ -1,7 +1,8 @@
 import { getTweetById } from '@lib/tweets';
 
-export async function GET(request, { params }) {
-  const { id } = await params;
+export async function GET(request, context) {
+  const params = await context.params;
+  const { id } = params;
   try {
     const tweet = await getTweetById(id);
     if (!tweet) {
