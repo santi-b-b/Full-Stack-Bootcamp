@@ -5,7 +5,7 @@ export function middleware(req) {
 
   console.log('🔥 Middleware ejecutado en:', req.nextUrl.pathname);
   // Rutas públicas
-  const publicRoutes = ['/login', '/register'];
+  const publicRoutes = ['/login'];
 
   // Dejar pasar si es API pública, login, register o archivo estático
   if (
