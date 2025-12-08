@@ -3,31 +3,26 @@ import { NextResponse } from 'next/server';
 export function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  // --- Rutas públicas reales ---
+  console.log('🔥 Middleware ejecutado en:', pathname);
+
+  // Rutas públicas (solo login en tu caso)
   const publicRoutes = ['/login'];
 
-  // Si la ruta es pública, deja pasar
-  if (publicRoutes.some((route) => pathname.startsWith(route))) {
-    return NextResponse.next();
-  }
-
-  // Rutas de construcción / Next.js
+  // Permitir rutas públicas o archivos estáticos
   if (
+    publicRoutes.includes(pathname) ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/static') ||
     pathname.startsWith('/assets') ||
     pathname === '/favicon.ico'
   ) {
     return NextResponse.next();
   }
 
-  // Obtener token
+  // Verificar token
   const token = req.cookies.get('session')?.value;
 
-  // Si no hay token, redirigir
   if (!token) {
-    const loginUrl = new URL('/login', req.url);
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.redirect(new URL('/login', req.url));
   }
 
   return NextResponse.next();
