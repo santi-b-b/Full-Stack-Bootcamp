@@ -3,8 +3,6 @@ import { NextResponse } from 'next/server';
 export function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  console.log('🔥 Middleware ejecutado en:', pathname);
-
   // Rutas públicas (solo login en tu caso)
   const publicRoutes = ['/login'];
 
