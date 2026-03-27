@@ -6,15 +6,27 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   const { email, password } = await req.json();
-  if (!email || !password) return NextResponse.json({ error: 'Missing' }, { status: 400 });
+
+  // Validate required fields
+  if (!email || !password) {
+    return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
+  }
 
   await connect();
+
+  // Check if user exists
   const user = await User.findOne({ email }).select('+password');
-  if (!user) return NextResponse.json({ error: 'Invalid' }, { status: 401 });
+  if (!user) {
+    return NextResponse.json({ error: 'This email is not registered' }, { status: 401 });
+  }
 
+  // Verify password
   const ok = await user.comparePassword(password);
-  if (!ok) return NextResponse.json({ error: 'Invalid' }, { status: 401 });
+  if (!ok) {
+    return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
+  }
 
+  // Create session
   const session = await createSession({
     userId: user._id,
     userAgent: req.headers.get('user-agent'),
@@ -29,8 +41,6 @@ export async function POST(req) {
   };
 
   const res = NextResponse.json(publicUser, { status: 200 });
-
-  // ⬅️ Aquí sí se adjunta la cookie correctamente
   res.headers.set('Set-Cookie', cookie);
 
   return res;
