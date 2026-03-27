@@ -30,14 +30,19 @@ export default function LoginForm({ onClose, onRegisterClick }) {
 
     if (res.ok) {
       // Login correcto → redirigir al home
-      console.log(res);
+      console.log('✅ Login exitoso');
       await setAuthless(false);
       await fetchUser();
       router.push('/');
     } else {
-      console.log('❌ ERROR RESPONSE RAW:', await res.text());
-      const data = await res.json();
-      setError(data.error || 'Error al iniciar sesión');
+      try {
+        const data = await res.json();
+        console.log('❌ ERROR RESPONSE:', data);
+        setError(data.error || 'Error al iniciar sesión');
+      } catch (err) {
+        console.log('❌ ERROR PARSING RESPONSE:', err);
+        setError('Error al iniciar sesión');
+      }
     }
   }
 
