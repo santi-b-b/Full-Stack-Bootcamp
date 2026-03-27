@@ -180,36 +180,72 @@ Before running this project, ensure you have the following installed:
    ```
 
 3. **Set up environment variables:**
-   Create a `.env.local` file in the root directory with the following variables:
+   Create a `.env.local` file in the root directory. Copy from `.env.example` and fill in your actual values:
 
    ```bash
-   # MongoDB Connection
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/twitter-clone
-
-   # Next.js Environment
-   NODE_ENV=development
-
-   # Optional: Cloudinary for image uploads
-   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
-   NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
-
-   # Session Configuration
-   SESSION_SECRET=your-secure-random-string-here
+   cp .env.example .env.local
    ```
+
+   Then edit `.env.local` with your credentials:
+   - `MONGODB_URI`: Your MongoDB Atlas connection string
+   - `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name
+   - `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`: Your Cloudinary upload preset
+   - `SESSION_SECRET`: A secure random string (min 32 characters)
 
 ---
 
 ## Environment Variables
 
-| Variable                               | Description                             | Required | Example                                          |
-| -------------------------------------- | --------------------------------------- | -------- | ------------------------------------------------ |
-| `MONGODB_URI`                          | MongoDB connection string               | ✅ Yes   | `mongodb+srv://user:pass@cluster.mongodb.net/db` |
-| `NODE_ENV`                             | Environment mode                        | ✅ Yes   | `development` or `production`                    |
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`    | Cloudinary cloud name for image uploads | ❌ No    | `your-cloud`                                     |
-| `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` | Cloudinary upload preset                | ❌ No    | `preset-name`                                    |
-| `SESSION_SECRET`                       | Secret key for session encryption       | ✅ Yes   | Random string (min 32 chars)                     |
+| Variable                               | Description                       | Required |
+| -------------------------------------- | --------------------------------- | -------- |
+| `MONGODB_URI`                          | MongoDB Atlas connection string   | ✅ Yes   |
+| `NODE_ENV`                             | Environment mode                  | ✅ Yes   |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`    | Cloudinary cloud name for uploads | ❌ No    |
+| `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` | Cloudinary upload preset          | ❌ No    |
+| `SESSION_SECRET`                       | Secret key for session encryption | ✅ Yes   |
+
+See `.env.example` for the complete template.
 
 > **Note:** Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser; never put secrets there.
+
+---
+
+## How to Run This Project
+
+### Prerequisites
+
+- **Node.js** 18+ (Node Version Manager recommended)
+- **MongoDB Atlas** account (free tier available at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas))
+- **Cloudinary** account (optional, for image uploads) at [cloudinary.com](https://cloudinary.com)
+
+### Installation Steps
+
+1. **Fork this repository** and clone it locally
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up your own MongoDB Atlas cluster:**
+   - Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Create a new cluster
+   - Get your connection string from the "Connect" button
+   - Replace `YOUR_USERNAME`, `YOUR_PASSWORD`, and `YOUR_CLUSTER` in `.env.local`
+
+4. **Generate a session secret:**
+
+   ```bash
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
+
+   Copy the output and paste it as `SESSION_SECRET` in `.env.local`
+
+5. **Run the application:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ---
 
