@@ -25,18 +25,18 @@ export default function RegisterForm({ onLogInClick }) {
 
     if (res.ok) {
       const newUser = await res.json();
-      setUser(newUser); // actualizar contexto
-      setAuthless(false); // ya no es usuario "authless"
+      setUser(newUser); // update context
+      setAuthless(false); // no longer an "authless" user
       router.push('/'); // redirigir al home
     } else {
       let error;
       try {
         error = await res.json();
       } catch {
-        error = { message: 'Respuesta vacía o no es JSON' };
+        error = { message: 'Empty response or invalid JSON' };
       }
       if (!error.message) {
-        error.message = 'Error desconocido o respuesta vacía del servidor';
+        error.message = 'Unknown error or empty server response';
       }
       console.error(error);
     }
@@ -44,18 +44,18 @@ export default function RegisterForm({ onLogInClick }) {
   return (
     <form onSubmit={handleSubmit} className="flex w-96 flex-col gap-4 p-4">
       <img src={'/assets/X logo big.png'} className="mx-auto max-w-16" />
-      <p className="mx-auto mb-4 text-3xl font-bold">Crea tu cuenta</p>
+      <p className="mx-auto mb-4 text-3xl font-bold">Create your account</p>
       <input
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
-        placeholder="Usuario"
+        placeholder="Username"
         required
         className="h-10 w-full rounded bg-neutral-50 p-2"
       />
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Nombre"
+        placeholder="Full Name"
         required
         className="h-10 w-full rounded bg-neutral-50 p-2"
       />
@@ -70,7 +70,7 @@ export default function RegisterForm({ onLogInClick }) {
       <input
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Contraseña"
+        placeholder="Password"
         type="password"
         required
         className="h-10 w-full rounded bg-neutral-50 p-2"
@@ -79,15 +79,15 @@ export default function RegisterForm({ onLogInClick }) {
         type="submit"
         className="h-10 w-full rounded-full border-1 border-blue-400 bg-[var(--color-basic)] text-white hover:bg-[var(--color-basic-hover)]"
       >
-        Registrarse
+        Sign Up
       </button>
       <div className="mt-4 flex gap-1 text-[15px] font-light text-neutral-500">
-        <p>¿Ya tienes cuenta? </p>
+        <p>Already have an account? </p>
         <p
           onClick={onLogInClick}
           className="hover:cursor-pointer hover:text-[var(--color-basic)] hover:underline"
         >
-          Ingresa
+          Sign In
         </p>
       </div>
     </form>

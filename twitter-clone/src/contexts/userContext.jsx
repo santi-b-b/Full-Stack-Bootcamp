@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
       data = await res.json();
       setUser(data);
     } catch (err) {
-      console.error('Error al cargar el usuario:', err);
+      console.error('Error loading user:', err);
     } finally {
       if (data) {
         setAuthless(false);

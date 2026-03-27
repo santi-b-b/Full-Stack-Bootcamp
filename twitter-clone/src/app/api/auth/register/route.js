@@ -6,12 +6,13 @@ import connect from '@lib/mongoose';
 export async function POST(req) {
   const { userName, name, email, password } = await req.json();
   if (!userName || !name || !email || !password) {
-    return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400 });
+    return new Response(JSON.stringify({ error: 'All fields are required' }), { status: 400 });
   }
 
   await connect();
   const exists = await User.findOne({ email });
-  if (exists) return new Response(JSON.stringify({ error: 'Email exists' }), { status: 409 });
+  if (exists)
+    return new Response(JSON.stringify({ error: 'Email is already registered' }), { status: 409 });
 
   const user = new User({ userName, name, email, password });
   await user.save();

@@ -20,7 +20,7 @@ const PostButtonBar = ({ onSelectImage }) => {
 
   return (
     <div className="flex w-full flex-1 flex-row justify-start gap-3">
-      {/* Botón Imagen */}
+      {/* Image Button */}
       <RoundButton
         icon="image"
         hoverColor={'basic'}
@@ -28,10 +28,10 @@ const PostButtonBar = ({ onSelectImage }) => {
         onClick={handleClick}
       />
 
-      {/* Input Oculto */}
+      {/* Hidden Input */}
       <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={handleFileChange} />
 
-      {/* Otros botones */}
+      {/* Other buttons */}
       <RoundButton icon="gif" hoverColor={'basic'} className="text-[var(--color-basic)]" />
       <RoundButton icon="planet" hoverColor={'basic'} className="text-[var(--color-basic)]" />
       <RoundButton

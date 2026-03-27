@@ -3,7 +3,7 @@ import { UserProvider } from '@/contexts/userContext';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className="bg-background text-foreground flex min-h-screen flex-col items-center">
         <UserProvider>
           <main className="w-full px-4">{children}</main>

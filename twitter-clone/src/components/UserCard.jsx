@@ -55,8 +55,7 @@ const UserCard = ({ profileUser }) => {
         </div>
         <p className="mb-4 text-base text-neutral-500">@{profileUser.userName}</p>
         <p className="mb-4 text-base">
-          Aquí iría la descripción del usuario o un pequeño texto, tengo que agregarlo al modelo de
-          datos.
+          This is where the user description would go. I need to add it to the data model.
         </p>
         <p className="mb-4 text-base text-neutral-500">
           Media & News CompanyChileelmostrador.cl Joined January 2008 270 Following 1.8M Followers

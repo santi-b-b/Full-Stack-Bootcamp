@@ -10,8 +10,8 @@ export default function LoginPage() {
         <img src={'/assets/X logo big.png'} className="max-w-xl" />
       </div>
       <div className="flex max-w-xl flex-col gap-10 pt-16">
-        <p className="mb-8 text-7xl font-bold">Lo que está pasando ahora</p>
-        <p className="text-4xl font-bold">Únete Hoy</p>
+        <p className="mb-8 text-7xl font-bold">What's happening now</p>
+        <p className="text-4xl font-bold">Join today</p>
         <Login />
       </div>
     </div>

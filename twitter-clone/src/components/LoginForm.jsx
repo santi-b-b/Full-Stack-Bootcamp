@@ -38,10 +38,10 @@ export default function LoginForm({ onClose, onRegisterClick }) {
       try {
         const data = await res.json();
         console.log('❌ ERROR RESPONSE:', data);
-        setError(data.error || 'Error al iniciar sesión');
+        setError(data.error || 'Login failed');
       } catch (err) {
         console.log('❌ ERROR PARSING RESPONSE:', err);
-        setError('Error al iniciar sesión');
+        setError('Login failed');
       }
     }
   }
@@ -50,7 +50,7 @@ export default function LoginForm({ onClose, onRegisterClick }) {
     <form onSubmit={handleSubmit} className="flex w-96 flex-col gap-4 p-4">
       {error && <p className="text-red-500">{error}</p>}
       <img src={'/assets/X logo big.png'} className="mx-auto max-w-16" />
-      <p className="mx-auto mb-4 text-3xl font-bold">Inicia sesión en X</p>
+      <p className="mx-auto mb-4 text-3xl font-bold">Sign in to X</p>
 
       <input
         type="email"
@@ -62,7 +62,7 @@ export default function LoginForm({ onClose, onRegisterClick }) {
       />
       <input
         type="password"
-        placeholder="Contraseña"
+        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
@@ -72,16 +72,16 @@ export default function LoginForm({ onClose, onRegisterClick }) {
         type="submit"
         className="w-full rounded-full border-1 border-blue-400 bg-[var(--color-basic)] py-2 text-white hover:bg-[var(--color-basic-hover)]"
       >
-        Ingresar
+        Sign In
       </button>
 
       <div className="mt-4 flex gap-1 text-[15px] font-light text-neutral-500">
-        <p>¿No tienes una cuenta? </p>
+        <p>Don't have an account? </p>
         <p
           onClick={onRegisterClick}
           className="hover:cursor-pointer hover:text-[var(--color-basic)] hover:underline"
         >
-          Regístrate
+          Sign up
         </p>
       </div>
     </form>

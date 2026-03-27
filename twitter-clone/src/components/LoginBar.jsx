@@ -10,8 +10,8 @@ const LoginBar = ({}) => {
   return (
     <div className="absolute bottom-0 left-0 z-40 flex h-18 w-full items-center justify-between bg-[var(--color-basic)] px-4 pr-30 pl-80 text-white shadow-[0_1px_20px_rgba(0,0,0,0.25)]">
       <div>
-        <p className="text-xl font-bold">No te pierdas lo que esta pasando</p>
-        <p>Las personas en X son las primeras en enterarse.</p>
+        <p className="text-xl font-bold">Don't miss what's happening</p>
+        <p>People on X are the first to know.</p>
       </div>
       <div className="text-md flex gap-2 font-bold">
         <Link href={'/login'} className="inline-flex">

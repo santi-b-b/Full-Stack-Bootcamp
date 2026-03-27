@@ -10,7 +10,7 @@ const CreatePostForm = () => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET);
-    console.log('Archivo seleccionado:', file);
+    console.log('File selected:', file);
 
     const res = await fetch(
       `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
@@ -23,7 +23,7 @@ const CreatePostForm = () => {
 
     const data = await res.json();
     console.log(data);
-    setImageUrl(data.secure_url); // guardas el link final
+    setImageUrl(data.secure_url); // save the final link
   };
 
   const handleSubmit = async () => {
